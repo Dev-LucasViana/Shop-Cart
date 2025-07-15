@@ -3,6 +3,7 @@ import Login from './pages/Login'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
 
+
 function App() {
 
 
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Login /> } />
         <Route path='/products' element={ <Products /> } />
-        <Route path='/product-details' element={ <ProductDetails /> } />
+        <Route path='/products/:id' element={ <ProductDetails /> } />
       </Routes>
     </>
   )

@@ -1,28 +1,25 @@
 import { useNavigate } from "react-router-dom"
 import * as EmailValidator from 'email-validator'
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import '../styles/LoginPageStyle.css'
 
 export default function Login(){
 
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [button, setButton] = useState(true)
-
     
-    function logar(){
-        
-        
+    function logar(){ 
         navigate('/products')
     }
-    function liberarBotao(){
-        if (email && password) {
-           setButton(false)
+
+    function liberarBotao() {
+        if (EmailValidator.validate(email) && password.length >= 8) {
+            return false
+        } else {
+            return true
         }
-
     }
-
-
 
     return(
         <>
@@ -34,7 +31,7 @@ export default function Login(){
             <label htmlFor="">Senha: </label>
             <input type="text" id="password" onChange={(password) => setPassword(password.target.value)}/><br /><br />
 
-            <button type="button" id="login-button" disabled={button} onClick={logar}>Entrar</button>
+            <button type="button" id="login-button" disabled={ liberarBotao() } onClick={logar}>Entrar</button>
         </>
     )
 }
