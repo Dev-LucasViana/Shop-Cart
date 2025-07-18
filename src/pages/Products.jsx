@@ -14,9 +14,9 @@ export default function Products(){
 
     return(
         <>
-            <header>
+            <div className="header">
                 <h1>Produtos</h1>
-            </header>
+            </div>
 
             <div className="products-container">
             {
@@ -24,8 +24,8 @@ export default function Products(){
                     return (
                         <> 
                             <div onClick={() => navigate(`/products/${element.id}`)} className="product">
-                            <img src={ element.image } width="250px" height="250px" alt="" />
-                            <p>{ element.title }</p>
+                            <img src={ element.image } alt="" />
+                            <p id="product-title">{ element.title }</p>
                             <p>R$ { element.price }</p>
                             </div>
                         </>
