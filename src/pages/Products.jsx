@@ -1,21 +1,29 @@
 import { useEffect, useState } from "react"
-import '../styles/ProductsPageStyle.css'
 import { useNavigate } from "react-router-dom"
+import { ShoppingCart, Basket } from '@phosphor-icons/react'
 
 export default function Products(){
     const [ data, setData] = useState([])
     const navigate = useNavigate()
-
+    
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
         .then((response) => response.json())
         .then((json) => setData(json))
     },[])
+    
+    const [cart, setCart] = useState([])
+    const addCart = (element) => {
+        setCart([...cart, element])
+    }
+    
+    console.log(cart);
 
     return(
         <>
-            <div className="header">
+            <div className="bg-slate-600">
                 <h1>Produtos</h1>
+                <h2 onClick={ () => navigate('/checkout', {  state: { cart }  })}>Carrinho<Basket size={24} /><sup>{ cart.length }</sup></h2>
             </div>
 
             <div className="products-container">
@@ -23,10 +31,13 @@ export default function Products(){
                 data.map((element) => {
                     return (
                         <> 
-                            <div onClick={() => navigate(`/products/${element.id}`)} className="product">
-                            <img src={ element.image } alt="" />
-                            <p id="product-title">{ element.title }</p>
-                            <p>R$ { element.price }</p>
+                            <div className="product">
+                                <img onClick={() => navigate(`/products/${element.id}`)} src={ element.image } alt="" />
+                                <p id="product-title">{ element.title }</p>
+                                <div className="add-cart-container">
+                                    <p id="product-price">R$ { element.price }</p>
+                                    <button id="add-cart" onClick={() => addCart(element)}><ShoppingCart size={30} />Adicionar ao carrinho</button>
+                                </div>
                             </div>
                         </>
                     )

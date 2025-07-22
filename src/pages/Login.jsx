@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import * as EmailValidator from 'email-validator'
 import { useState } from "react"
-import '../styles/LoginPageStyle.css'
 import { Envelope, Key, EyeSlash, Eye } from '@phosphor-icons/react'
 
 export default function Login(){
@@ -31,7 +30,7 @@ export default function Login(){
     }
     return(
         <>
-            <div className="background-container">
+            <div className="flex bg-slate-400">
                 <div className="blur-container">
                         <div className="main-container">
                         <h1>Login</h1>

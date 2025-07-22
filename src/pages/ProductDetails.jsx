@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import '../styles/DetailsPageStyle.css'
+import { ShoppingCart, ArrowUUpLeft } from '@phosphor-icons/react'
 
 export default function ProductDetails(){
 
@@ -26,7 +26,7 @@ export default function ProductDetails(){
         <>
             <div className="body-container">
                 <div className="header-container">
-                <button onClick={() => navigate(-1)} type="button">Voltar</button>
+                <button id="backpage-button" onClick={() => navigate(-1)} type="button"><ArrowUUpLeft size={20} />Voltar</button>
                 <h1 id="h1-header">Detalhes do Produto</h1>
             </div>
             
@@ -45,9 +45,12 @@ export default function ProductDetails(){
                     return (
                         <> 
                             <div onClick={() => navigate(`/products/${element.id}`)} className="product">
-                            <img src={ element.image } alt="" />
-                            <p id="product-title">{ element.title }</p>
-                            <p>R$ { element.price }</p>
+                                <img src={ element.image } alt="" />
+                                <p id="product-title">{ element.title }</p>
+                                <div className="add-cart-container">
+                                    <p id="product-price">R$ { element.price }</p>
+                                    <button id="add-cart"><ShoppingCart size={30} />Adicionar ao carrinho</button>
+                                </div>
                             </div>
                         </>
                     )
