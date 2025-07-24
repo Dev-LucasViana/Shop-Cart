@@ -24,32 +24,32 @@ export default function ProductDetails(){
 
     return(
         <>
-            <div className="body-container">
-                <div className="header-container">
-                <button id="backpage-button" onClick={() => navigate(-1)} type="button"><ArrowUUpLeft size={20} />Voltar</button>
-                <h1 id="h1-header">Detalhes do Produto</h1>
+            <div className="">
+                <div className="">
+                <button id="" onClick={() => navigate(-1)} type="button"><ArrowUUpLeft size={20} />Voltar</button>
+                <h1 id="">Detalhes do Produto</h1>
             </div>
             
-            <div className="product-details">
-                <div className="details">
+            <div className="">
+                <div className="">
                     <h3>{ product.title }</h3>
                     <img src={ product.image } alt="" />
                 </div>
-                <div className="buy-details">
+                <div className="">
                     <button>Adicionar ao carrinho</button>
                 </div>
             </div>
-                        <div className="other-products">
+                        <div className="">
             {
                 allProducts.map((element) => {
                     return (
                         <> 
-                            <div onClick={() => navigate(`/products/${element.id}`)} className="product">
+                            <div onClick={() => navigate(`/products/${element.id}`)} className="">
                                 <img src={ element.image } alt="" />
-                                <p id="product-title">{ element.title }</p>
-                                <div className="add-cart-container">
-                                    <p id="product-price">R$ { element.price }</p>
-                                    <button id="add-cart"><ShoppingCart size={30} />Adicionar ao carrinho</button>
+                                <p id="">{ element.title }</p>
+                                <div className="">
+                                    <p id="">R$ { element.price }</p>
+                                    <button id=""><ShoppingCart size={30} />Adicionar ao carrinho</button>
                                 </div>
                             </div>
                         </>

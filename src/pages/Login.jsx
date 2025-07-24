@@ -30,25 +30,37 @@ export default function Login(){
     }
     return(
         <>
-            <div className="flex bg-slate-400">
-                <div className="blur-container">
-                        <div className="main-container">
-                        <h1>Login</h1>
+            <div className="flex bg-orange-400 font-roboto justify-center items-center w-screen h-screen">
+                        <div className="bg-white flex h-[390px] flex-wrap w-[340px] justify-center items-center flex-col rounded-md shadow-xl shadow-stone-600">
+                        <h1 className="text-3xl weight mb-8">Login</h1>
 
-                        <div className="forms-container">
+                        <div className="flex items-center justify-start flex-row h-fit w-full flex-wrap">
                             
-                            <label htmlFor=""><Envelope size={18} /> *E-mail: </label>
-                            <input type="text" id="email" onChange={(email) => setEmail(email.target.value)}/>
+                            <label 
+                            className="flex items-center justify-center my-3 rounded-md ml-2" 
 
-                            <label htmlFor=""><Key size={18} /> *Senha: </label>
-                            <input type={senhaVisivel ? "text" : "password"} id="password" onChange={(pass) => setPassword(pass.target.value)}/>
-                            <button className="eye-button" onClick={verSenha}>{senhaVisivel ? <Eye size={24} /> : <EyeSlash size={24} />}</button>
+                            htmlFor=""><Envelope size={24} /> *E-mail: 
+                            <input className="ml-2 border-b-2 border-b-orange-400 rounded-md shadow-stone-600 outline-none p-px" type="text" id="email" onChange={(email) => setEmail(email.target.value)}/>
+                            </label>
+                            
+
+                            <label 
+                            className="flex items-center justify-center my-3 h-7 rounded-md ml-2"
+                            
+                            htmlFor=""><Key size={24} /> *Senha: 
+                            <input className="ml-2 border-b-2 border-b-orange-400 rounded-md shadow-stone-600 p-px outline-none" type={senhaVisivel ? "text" : "password"} id="password"  onChange={(pass) => setPassword(pass.target.value)}/>
+                            <button onClick={verSenha}>{
+                            senhaVisivel ? 
+                            <Eye size={24} className="bg-white h-7 rounded-md" /> : 
+                            <EyeSlash size={24} className="bg-white h-7 rounded-md"
+                             />}</button>
+                            </label>             
+
                         </div>
 
                         <p style={{fontWeight:"bold", textAlign:"center"}}>Digite email e senha válidos<br/> para entrar</p>
-                        <button type="button" id="login-button" disabled={ liberarBotao() } onClick={logar}>Entrar</button>
+                        <button className="bg-orange-400 shadow-inner shadow-stone-600 w-24 h-10 mt-5 rounded-full disabled:opacity-50" type="button" id="" disabled={ liberarBotao() } onClick={logar}>Entrar</button>
                     </div>
-                </div>
             </div>
         </>
     )

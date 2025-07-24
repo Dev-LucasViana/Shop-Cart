@@ -26,17 +26,17 @@ export default function Products(){
                 <h2 onClick={ () => navigate('/checkout', {  state: { cart }  })}>Carrinho<Basket size={24} /><sup>{ cart.length }</sup></h2>
             </div>
 
-            <div className="products-container">
+            <div className="">
             {
                 data.map((element) => {
                     return (
                         <> 
-                            <div className="product">
+                            <div className="">
                                 <img onClick={() => navigate(`/products/${element.id}`)} src={ element.image } alt="" />
-                                <p id="product-title">{ element.title }</p>
-                                <div className="add-cart-container">
-                                    <p id="product-price">R$ { element.price }</p>
-                                    <button id="add-cart" onClick={() => addCart(element)}><ShoppingCart size={30} />Adicionar ao carrinho</button>
+                                <p id="">{ element.title }</p>
+                                <div className="">
+                                    <p id="">R$ { element.price }</p>
+                                    <button id="" onClick={() => addCart(element)}><ShoppingCart size={30} />Adicionar ao carrinho</button>
                                 </div>
                             </div>
                         </>

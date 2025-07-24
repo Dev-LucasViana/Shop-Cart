@@ -11,11 +11,11 @@ export default function Checkout(){
     return(
         <div className="">
         <h1 className="text-3xl font-bold text-blue-500">Checkout</h1>
-        <div className="cart-list">
+        <div className="">
             {
                 location.state.cart.map((element) => {
                 return(
-                    <div className="cart-item">
+                    <div className="">
                     <img width="100px" height="100px" src={ element.image } alt="" />
                     <p>{ element.title }</p>
                     </div>
