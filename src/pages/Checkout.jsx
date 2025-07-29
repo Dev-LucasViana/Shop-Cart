@@ -47,7 +47,7 @@ export default function Checkout() {
   const handleFinishOrder = () => {
     localStorage.removeItem("shopcart_cart");
     setCart([]);
-    navigate("/Sucess");
+    navigate("/Success");
   };
 
   const handleBack = () => {
