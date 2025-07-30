@@ -73,131 +73,128 @@ export default function ProductDetails() {
 
   return (
     <>
-      <div>
-        <div className="bg-amber-500 font-roboto flex flex-row items-center justify-center p-3 h-16">
-          <div className="flex flex-row justify-evenly items-center w-1/2">
-            <h2
-              onClick={() => navigate("/products")}
-              className="flex items-center text-2xl  text-white m-auto hover:cursor-pointer"
-            >
-              Início <House className="mx-1" size={24} weight="regular" />
-            </h2>
-            <h2
-              className="text-2xl text-white flex items-center m-auto hover:cursor-pointer"
-              onClick={() => navigate("/checkout")}
-            >
-              Carrinho
-              <Basket className="ml-1" weight="regular" size={24} />
-            </h2>
-            <h2
-              className="text-2xl text-white m-auto hover:cursor-pointer"
-              onClick={() => navigate("/")}
-            >
-              Log-out
-            </h2>
-          </div>
+      <div className="bg-amber-500 font-roboto flex flex-wrap gap-4 items-center justify-center p-4">
+        <div className="flex flex-wrap justify-center items-center gap-6 w-full md:w-auto">
+          <h2
+            onClick={() => navigate("/products")}
+            className="flex items-center text-xl md:text-2xl text-white cursor-pointer"
+          >
+            Início <House className="ml-1" size={24} />
+          </h2>
+          <h2
+            className="flex items-center text-xl md:text-2xl text-white cursor-pointer"
+            onClick={() => navigate("/checkout")}
+          >
+            Carrinho <Basket className="ml-1" size={24} />
+          </h2>
+          <h2
+            className="text-xl md:text-2xl text-white cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            Log-out
+          </h2>
         </div>
-
-        <div className="font-roboto h-[600px] flex mt-8">
-          <div className=" w-1/2 mx-auto flex flex-col items-center">
-            <img
-              src={product.image}
-              alt={product.title}
-              className="w-[400px] h-[400px] object-contain"
-            />
-          </div>
-
-          <div className=" w-1/2 mx-auto p-4">
-            <h2 className="text-2xl mb-2 font-bold">{product.title}</h2>
-
-            <div className="flex items-center mb-4">
-              <u className="text-[#1F2937]">{rate.toFixed(1)}</u>
-
-              <div className="flex items-center gap-1 ml-2">
-                {[...Array(fullStars)].map((_, i) => (
-                  <img
-                    src={starFull}
-                    alt="Estrela cheia"
-                    key={`full-${i}`}
-                    className="w-5 h-5"
-                  />
-                ))}
-                {hasHalfStar && (
-                  <img
-                    src={starHalf}
-                    alt="Meia estrela"
-                    key="half"
-                    className="w-5 h-5"
-                  />
-                )}
-                {[...Array(emptyStars)].map((_, i) => (
-                  <span key={`empty-${i}`} className="text-gray-300 text-xl">
-                    ☆
-                  </span>
-                ))}
-              </div>
-
-              <span className="mx-2">|</span>
-              <u className="text-[#1F2937]">{count}</u>
-              <span className="ml-1">Avaliações</span>
-            </div>
-
-            <p className="mb-4">{product.description}</p>
-            <button
-              onClick={() => addCart(product)}
-              className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600"
-            >
-              Adicionar ao carrinho
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mt-10 p-6">
-          {allProducts.map((element) => (
-            <div
-              key={element.id}
-              onClick={() => navigate(`/products/${element.id}`)}
-              className="bg-white border rounded p-4 hover:shadow cursor-pointer"
-            >
-              <img
-                src={element.image}
-                alt={element.title}
-                className="h-32 mx-auto object-contain"
-              />
-              <p className="mt-2 font-semibold text-center">{element.title}</p>
-              <div className="flex justify-between items-center mt-2">
-                <p className="text-amber-600 font-bold">
-                  R$ {element.price.toFixed(2)}
-                </p>
-                <button
-                  className="flex items-center gap-1 text-amber-500 hover:text-amber-600"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    addCart(element);
-                  }}
-                >
-                  <ShoppingCart size={24} />
-                  Adicionar
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <button
-          className="fixed bottom-6 right-6 bg-amber-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-600 transition-all z-40"
-          onClick={() => setShowModal(true)}
-        >
-          Ver carrinho ({cart.reduce((acc, item) => acc + item.quantity, 0)})
-        </button>
-
-        <CartModal
-          cart={cart}
-          setCart={setCart}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
       </div>
+
+      <div className="font-roboto grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+        <div className="flex justify-center items-center">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-64 md:w-[400px] h-64 md:h-[400px] object-contain"
+          />
+        </div>
+
+        <div className="p-4">
+          <h2 className="text-2xl mb-2 font-bold">{product.title}</h2>
+
+          <div className="flex items-center mb-4 flex-wrap">
+            <u className="text-gray-800">{rate.toFixed(1)}</u>
+
+            <div className="flex items-center gap-1 ml-2">
+              {[...Array(fullStars)].map((_, i) => (
+                <img
+                  src={starFull}
+                  alt="Estrela cheia"
+                  key={`full-${i}`}
+                  className="w-5 h-5"
+                />
+              ))}
+              {hasHalfStar && (
+                <img
+                  src={starHalf}
+                  alt="Meia estrela"
+                  key="half"
+                  className="w-5 h-5"
+                />
+              )}
+              {[...Array(emptyStars)].map((_, i) => (
+                <span key={`empty-${i}`} className="text-gray-300 text-xl">
+                  ☆
+                </span>
+              ))}
+            </div>
+
+            <span className="mx-2">|</span>
+            <u className="text-gray-800">{count}</u>
+            <span className="ml-1">Avaliações</span>
+          </div>
+
+          <p className="mb-4">{product.description}</p>
+          <button
+            onClick={() => addCart(product)}
+            className="bg-amber-500 text-white px-4 py-2 rounded hover:bg-amber-600"
+          >
+            Adicionar ao carrinho
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+        {allProducts.map((element) => (
+          <div
+            key={element.id}
+            onClick={() => navigate(`/products/${element.id}`)}
+            className="bg-white border rounded p-4 hover:shadow cursor-pointer"
+          >
+            <img
+              src={element.image}
+              alt={element.title}
+              className="h-32 mx-auto object-contain"
+            />
+            <p className="mt-2 font-semibold text-center">{element.title}</p>
+            <div className="flex justify-between items-center mt-2">
+              <p className="text-amber-600 font-bold">
+                R$ {element.price.toFixed(2)}
+              </p>
+              <button
+                className="flex items-center gap-1 text-amber-500 hover:text-amber-600"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  addCart(element);
+                }}
+              >
+                <ShoppingCart size={24} />
+                Adicionar
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        className="fixed bottom-6 right-6 bg-amber-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-600 transition-all z-40"
+        onClick={() => setShowModal(true)}
+      >
+        Ver carrinho ({cart.reduce((acc, item) => acc + item.quantity, 0)})
+      </button>
+
+      <CartModal
+        cart={cart}
+        setCart={setCart}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </>
   );
 }
