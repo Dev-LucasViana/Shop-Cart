@@ -4,6 +4,8 @@ import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
+import LoginMessage from "./components/loginMessage";
+
 import "./App.css";
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/mess" element={<LoginMessage />} />
       </Routes>
     </>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart, Basket, House } from "@phosphor-icons/react";
+import { ShoppingCart, Basket, House, SignOut } from "@phosphor-icons/react";
 import CartModal from "../components/cartModal";
 
 export default function Products() {
@@ -49,76 +49,79 @@ export default function Products() {
         showModal={showModal}
         setShowModal={setShowModal}
       />
-      {/* Cabeçalho Responsivo */}
-      <div className="bg-amber-500 font-roboto flex flex-wrap gap-4 items-center justify-center p-4">
-        <div className="flex flex-wrap justify-center items-center gap-6 w-full md:w-auto">
+
+      {/* Cabeçalho */}
+      <div className="bg-amber-500 font-roboto p-3">
+        <div className="flex flex-wrap gap-4 justify-start items-center w-full max-w-5xl mx-auto px-4">
           <h2
-            className="flex items-center text-xl md:text-2xl text-white cursor-pointer"
             onClick={() => navigate("/products")}
+            className="flex items-center text-xl sm:text-2xl text-white cursor-pointer"
           >
-            Início <House className="mx-1" size={24} weight="bold" />
+            Início <House className="mx-1" size={24} />
           </h2>
           <h2
-            className="flex items-center text-xl md:text-2xl text-white cursor-pointer"
             onClick={() => navigate("/checkout")}
+            className="flex items-center text-xl sm:text-2xl text-white cursor-pointer"
           >
             Carrinho <Basket className="ml-1" size={24} />
           </h2>
           <h2
-            className="text-xl md:text-2xl text-white cursor-pointer"
             onClick={() => navigate("/")}
+            className="flex items-center text-xl sm:text-2xl text-white cursor-pointer"
           >
-            Log-out
+            Log-out <SignOut className="ml-1" size={24} />
           </h2>
         </div>
       </div>
 
-      {/* Lista de produtos com grid responsivo */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-200 p-6">
-        {data.map((element) => (
-          <div
-            key={element.id}
-            className="group relative bg-white rounded-md shadow hover:shadow-lg transition-all p-4 flex flex-col justify-between"
-          >
+      {/* Grid de produtos */}
+      <div className="bg-gray-200 py-8 px-4 md:px-6 lg:px-8">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-x-4 gap-y-12">
+          {data.map((element) => (
             <div
-              className="cursor-pointer flex flex-col items-center"
-              onClick={() => navigate(`/products/${element.id}`)}
+              key={element.id}
+              className="group relative bg-white rounded-md shadow-sm p-3 flex flex-col items-center justify-between h-[280px] cursor-pointer transition-all"
             >
               <img
-                className="w-40 h-40 object-contain mb-4"
+                className="w-[100px] h-[100px] object-contain"
+                onClick={() => navigate(`/products/${element.id}`)}
                 src={element.image}
                 alt={element.title}
               />
-              <p className="text-sm font-medium text-center">{element.title}</p>
-            </div>
-
-            <div className="mt-4">
-              <p className="text-amber-600 font-semibold">
-                R$ <span className="text-xl">{element.price}</span>
+              <p className="text-xs mt-2 line-clamp-2 text-center">
+                {element.title}
+              </p>
+              <p className="flex items-center text-amber-500 text-sm mt-1">
+                R$
+                <span className="text-base font-bold ml-1">
+                  {element.price.toFixed(2)}
+                </span>
               </p>
               <button
-                className="flex items-center gap-2 border-2 border-amber-500 px-3 py-1 rounded-full mt-2 hover:text-amber-500 transition"
+                className="flex items-center border border-amber-500 px-2 py-1 rounded-full hover:text-amber-500 transition-all mt-2 text-sm"
                 onClick={() => addCart(element)}
               >
-                <ShoppingCart size={20} /> Adicionar ao carrinho
+                <ShoppingCart size={18} className="mr-1" />
+                Adicionar
               </button>
-            </div>
 
-            <div
-              onClick={() => navigate(`/products/${element.id}`)}
-              className="absolute bottom-[-2.5rem] left-0 w-full h-10 bg-amber-500 text-white items-center justify-center rounded-md z-10 
-            opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 
-            transition-all duration-300 shadow-lg cursor-pointer flex"
-            >
-              <h3>Ver detalhes</h3>
+              {/* Ver detalhes */}
+              <div
+                onClick={() => navigate(`/products/${element.id}`)}
+                className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 w-[90%] h-8 bg-amber-500 text-white items-center justify-center rounded-md z-10 
+                  opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 
+                  transition-all duration-300 shadow-md cursor-pointer flex text-sm"
+              >
+                Ver detalhes
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Botão flutuante visível em qualquer tela */}
+      {/* Botão flutuante */}
       <button
-        className="fixed bottom-6 right-6 bg-amber-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-600 transition z-40"
+        className="fixed bottom-6 right-6 bg-amber-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-amber-600 transition-all z-40 text-sm sm:text-base"
         onClick={() => setShowModal(true)}
       >
         Ver carrinho ({totalItems})
