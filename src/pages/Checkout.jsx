@@ -116,12 +116,18 @@ export default function Checkout() {
                     <p className="text-sm text-gray-600 mt-1 text-center sm:text-left">
                       Valor unitário:{" "}
                       <span className="text-amber-600 font-semibold">
-                        R$ {item.price.toFixed(2)}
+                        {item.price.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
                       </span>
                     </p>
                   </div>
                   <div className="font-bold text-amber-600 text-lg text-center sm:text-right w-full sm:w-auto">
-                    R$ {(item.price * item.quantity).toFixed(2)}
+                    {(item.price * item.quantity).toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
                   </div>
                 </div>
               ))}
@@ -138,7 +144,12 @@ export default function Checkout() {
               <div className="text-right">
                 <p className="text-lg sm:text-xl font-bold text-gray-700">
                   Total do pedido:{" "}
-                  <span className="text-amber-600">R$ {total.toFixed(2)}</span>
+                  <span className="text-amber-600">
+                    {total.toLocaleString("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    })}
+                  </span>
                 </p>
 
                 <button

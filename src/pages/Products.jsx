@@ -92,10 +92,10 @@ export default function Products() {
                 {element.title}
               </p>
               <p className="flex items-center text-amber-500 text-sm mt-1">
-                R$
-                <span className="text-base font-bold ml-1">
-                  {element.price.toFixed(2)}
-                </span>
+                {element.price.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
               </p>
               <button
                 className="flex items-center border border-amber-500 px-2 py-1 rounded-full hover:text-amber-500 transition-all mt-2 text-sm"
@@ -108,7 +108,7 @@ export default function Products() {
               {/* Ver detalhes */}
               <div
                 onClick={() => navigate(`/products/${element.id}`)}
-                className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 w-[90%] h-8 bg-amber-500 text-white items-center justify-center rounded-md z-10 
+                className="absolute bottom-[-2.2rem] left-0 w-full h-8 bg-amber-500 text-white items-center justify-center rounded-md z-10 
                   opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 
                   transition-all duration-300 shadow-md cursor-pointer flex text-sm"
               >

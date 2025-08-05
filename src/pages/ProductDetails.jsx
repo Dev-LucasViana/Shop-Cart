@@ -139,7 +139,10 @@ export default function ProductDetails() {
             <p className="mb-4 text-sm sm:text-base">{product.description}</p>
 
             <p className="text-amber-600 text-xl font-bold mb-4">
-              R$ {product.price.toFixed(2)}
+              {product.price.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
             </p>
 
             <button
@@ -154,7 +157,7 @@ export default function ProductDetails() {
 
       <div className="bg-gray-200 px-4 sm:px-6 lg:px-8 pt-10 pb-10">
         <h3 className="text-xl font-semibold mb-4 text-center">
-          Produtos relacionados
+          Mais Produtos
         </h3>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-x-4 gap-y-12 max-w-screen-xl mx-auto">
@@ -173,7 +176,10 @@ export default function ProductDetails() {
                 {element.title}
               </p>
               <p className="text-sm text-amber-600 font-bold mt-1">
-                R$ {element.price.toFixed(2)}
+                {element.price.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
               </p>
               <button
                 className="flex items-center border border-amber-500 px-2 py-1 rounded-full hover:text-amber-500 transition-all mt-2 text-sm"
@@ -188,7 +194,7 @@ export default function ProductDetails() {
 
               <div
                 onClick={() => navigate(`/products/${element.id}`)}
-                className="absolute bottom-[-2.2rem] left-1/2 -translate-x-1/2 w-[90%] h-8 bg-amber-500 text-white items-center justify-center rounded-md z-10 
+                className="absolute bottom-[-2.2rem] left-0 w-full h-8 bg-amber-500 text-white items-center justify-center rounded-md z-10 
                   opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 
                   transition-all duration-300 shadow-md cursor-pointer flex text-sm"
               >
